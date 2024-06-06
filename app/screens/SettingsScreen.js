@@ -38,7 +38,8 @@ const SettingsScreen = ({ navigation }) => {
 
   const update = async () => {
     setLoading(true);
-    const user = await Auth.currentAuthenticatedUser().then(async user => { return user});
+    const user = await Auth.currentAuthenticatedUser();
+    await Auth.updateUserAttributes(user, {'name': username});
     console.log('this is logined user', user.attributes)
 
     setLoading(false);
