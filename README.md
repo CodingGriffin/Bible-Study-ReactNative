@@ -1,123 +1,230 @@
-# Welcome to your Expo app 👋
+# Bible Study App 📖
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A comprehensive React Native application built with Expo for creating and managing Bible study sessions. This app integrates AWS Amplify for backend services, OpenAI for intelligent content generation, and provides both individual and community study features.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+- **Intelligent Session Generation**: AI-powered Bible study questions using OpenAI GPT-4
+- **AWS Authentication**: Secure user management with AWS Cognito
+- **Community Studies**: Collaborative Bible study sessions
+- **Multiple Bible Versions**: Support for various Bible translations (NIV, ESV, etc.)
+- **Cross-Platform**: Runs on iOS, Android, and Web
+- **Offline Support**: Save and access sessions offline
+- **Customizable Studies**: Tailored content for different group types (Family, Youth, etc.)
 
-   ```bash
-   npm install
-   ```
+## 🛠 Tech Stack
 
-2. Start the app
+- **Frontend**: React Native with Expo
+- **Backend**: AWS Amplify (Cognito, Lambda, API Gateway)
+- **AI Integration**: OpenAI GPT-4 API
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Navigation**: Expo Router with file-based routing
+- **State Management**: React Hooks
+- **Development**: TypeScript, ESLint
 
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-
-
-
-
-
-
-# Project Setup and Build Instructions
-
-## Prerequisites
+## 📋 Prerequisites
 
 Ensure you have the following installed:
 
-- Node.js v22.1.0
-- npm (Node Package Manager)
+- **Node.js**: v22.1.0 (recommended)
+- **npm**: Latest version
+- **Expo CLI**: Global installation required
+- **EAS CLI**: For building and deployment
+- **AWS Account**: For Amplify services
+- **OpenAI API Key**: For AI-powered content generation
 
-## Node.js Installation
+## 🔧 Installation & Setup
 
-To install Node.js v22.1.0, you can use `nvm` (Node Version Manager):
-
+### 1. Node.js Setup
+```bash
+# Using nvm (recommended)
 nvm install 22.1.0
 nvm use 22.1.0
 
-## Global Package Installation
+# Verify installation
+node --version
+npm --version
+```
 
-Install the necessary global packages:
+### 2. Global Dependencies
+```bash
+npm install -g expo-cli@latest
+npm install -g @aws-amplify/cli
+npm install -g eas-cli
+```
 
-- npm install -g expo-cli
-- npm install -g eas-cli
+### 3. Project Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd bible-study-app
 
-## Project Setup
-Navigate to the source code directory and install dependencies:
+# Install dependencies
+npm install
 
-- cd path/to/your/project
-- npm install
+# Configure AWS Amplify (if not already configured)
+amplify configure
+amplify pull --appId d2tpl0orcw9sl6 --envName dev
+```
 
-## Running the Project
-To run the project for web:
+### 4. Environment Configuration
+Create a `.env` file in the root directory:
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-- npm run web
+## 🚀 Development
 
-## Building the Project
+### Start Development Server
+```bash
+# Start Expo development server
+npm start
+# or
+expo start
 
-### Login to Expo
-Login to your Expo account:
-- expo logout
-- expo login
+# Platform-specific commands
+npm run android    # Android emulator
+npm run ios        # iOS simulator  
+npm run web        # Web browser
+```
 
-### iOS Build
+### Development Workflow
+1. **File-based Routing**: Add screens in the `app/` directory
+2. **Components**: Reusable components in `app/components/`
+3. **Screens**: Main application screens in `app/screens/`
+4. **AWS Configuration**: Auto-generated in `app/aws-exports.js`
 
-To build for iOS simulator:
-- eas build --platform ios --profile ios-simulator
+## 🏗 Building & Deployment
 
-### Android Build
-To build for Android development:
+### Development Builds
+```bash
+# iOS Simulator
+eas build --platform ios --profile ios-simulator
 
-- eas build --platform android --profile development
+# Android Development
+eas build --platform android --profile development
+```
 
-## Deployment
-If the build runs successfully, the project will be available on the Expo Dev site.
+### Production Builds
+```bash
+# iOS Production
+eas build --platform ios --profile production
 
-### Running on Device
-1. After a successful build, a QR code will appear in the terminal.
-2. Scan the QR code with your phone's camera.
-3. The app will install on your phone.
+# Android Production  
+eas build --platform android --profile production
+```
 
-## Notes
-Ensure that your project's root path is correct before running the build commands.
-Make sure to have an active internet connection during the build and installation process.
+### Deployment
+```bash
+# Submit to app stores
+eas submit --platform ios
+eas submit --platform android
+```
 
-## Useful Links
-- [Expo Dev](https://expo.dev/): View our project.
-- [Expo CLI Documentation](https://docs.expo.dev/)
-- [EAS BUILD Documentation](https://docs.expo.dev/build/introduction/)
+## 📱 Usage
+
+### Authentication
+- Users sign up/login using AWS Cognito
+- Email verification required
+- Profile management available in settings
+
+### Creating Study Sessions
+1. Navigate to "Create Session"
+2. Configure study parameters:
+   - Group type (Family, Youth, Adult, etc.)
+   - Number of questions
+   - Verses per question
+   - Focus topic
+   - Bible version preference
+3. AI generates relevant questions and verses
+4. Save for future use or share with community
+
+### Community Features
+- Browse community-created studies
+- Join group sessions
+- Share your own study materials
+
+## 🔧 Configuration Files
+
+- **`app.json`**: Expo configuration and build settings
+- **`eas.json`**: EAS Build profiles and deployment settings
+- **`amplify/`**: AWS Amplify backend configuration
+- **`tailwind.config.js`**: Styling configuration
+- **`package.json`**: Dependencies and scripts
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run linting
+npm run lint
+```
+
+## 📚 Project Structure
+
+```
+bible-study-app/
+├── app/                    # Main application code
+│   ├── (tabs)/            # Tab-based navigation screens
+│   ├── screens/           # Application screens
+│   ├── components/        # Reusable components
+│   ├── config/           # Configuration files
+│   └── aws-exports.js    # AWS configuration
+├── amplify/              # AWS Amplify backend
+├── assets/               # Static assets
+├── scripts/              # Utility scripts
+└── docs/                 # Documentation
+```
+
+## 🔐 Security
+
+- AWS Cognito handles user authentication
+- API endpoints secured with AWS IAM
+- Environment variables for sensitive data
+- HTTPS enforcement for all API calls
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support & Documentation
+
+- **Expo Documentation**: [https://docs.expo.dev/](https://docs.expo.dev/)
+- **AWS Amplify Docs**: [https://docs.amplify.aws/](https://docs.amplify.aws/)
+- **React Native Docs**: [https://reactnative.dev/docs/getting-started](https://reactnative.dev/docs/getting-started)
+- **OpenAI API Docs**: [https://platform.openai.com/docs](https://platform.openai.com/docs)
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Build Failures**
+- Ensure all dependencies are installed: `npm install`
+- Clear Expo cache: `expo start --clear`
+- Verify AWS credentials: `amplify status`
+
+**Authentication Issues**
+- Check AWS Cognito configuration
+- Verify `aws-exports.js` is up to date
+- Run `amplify pull` to sync backend changes
+
+**API Errors**
+- Verify OpenAI API key in environment variables
+- Check AWS Lambda function logs in CloudWatch
+- Ensure proper IAM permissions
+
+---
+
+**Package**: `bible@1.0.0`  
+**Expo Project ID**: `bf0f9ddf-57ea-41ec-8f48-aea2dfbb72a1`  
+**Bundle ID**: `com.testbible.bible`
